@@ -5,6 +5,10 @@
   "version": "0.0.0-development",
   "publisher": "azdanov",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azdanov/vscode-easy-coding-standard.git"
+  },
   "engines": {
     "vscode": "^1.27.0"
   },
@@ -13,18 +17,6 @@
     "Linters",
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:extension.sayHello"
-  ],
-  "main": "./out/extension",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.sayHello",
-        "title": "Hello World"
-      }
-    ]
-  },
   "scripts": {
     "compile": "tsc -p ./",
     "cz": "git-cz",
@@ -36,6 +28,18 @@
     "vscode:test": "node ./node_modules/vscode/bin/test",
     "watch": "tsc -watch -p ./",
     "semantic-release": "semantic-release"
+  },
+  "activationEvents": [
+    "onCommand:extension.sayHello"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.sayHello",
+        "title": "Hello World"
+      }
+    ]
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.0",
@@ -85,10 +89,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/azdanov/vscode-easy-coding-standard.git"
   },
   "release": {
     "verifyConditions": [
