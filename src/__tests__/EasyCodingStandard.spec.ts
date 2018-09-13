@@ -1,8 +1,9 @@
 import { EasyCodingStandard } from "../EasyCodingStandard";
 import "jest-extended";
 
-describe("EasyCodingStandard", () => {
+describe("EasyCodingStandard", async () => {
   const testFile = `${process.cwd()}/src/__fixtures__/src/index.php`;
+  const formatFile = `${process.cwd()}/src/__fixtures__/src/format.php`;
   const config = {
     enable: false,
     onSave: false,
@@ -38,5 +39,12 @@ describe("EasyCodingStandard", () => {
 
     const { stdout } = await ecs.check(testFile, ["psr2"]);
     expect(stdout).toInclude("No errors found.");
+  });
+
+  it("should fail when a checker is present", async () => {
+    const ecs = new EasyCodingStandard(config.executablePath);
+
+    const { stdout } = await ecs.check(formatFile, ["psr2"]);
+    expect(stdout).toInclude("[WARNING]");
   });
 });
