@@ -37,53 +37,41 @@
   "contributes": {
     "commands": [
       {
-        "command": "phpcbf-soderlind",
-        "title": "PHP Code Beautifier and Fixer: Fix this file",
+        "command": "extension.ecs-version",
+        "title": "EasyCodingStandard: Version",
+        "when": "!inOutput && editorFocus && editorLangId == php"
+      },
+      {
+        "command": "extension.ecs-check",
+        "title": "EasyCodingStandard: Check this file",
         "when": "!inOutput && editorFocus && editorLangId == php"
       }
     ],
     "configuration": {
-      "title": "PHP Code Beautifier and Fixer Configuration options",
+      "title": "PHP EasyCodingStandard",
       "type": "object",
       "properties": {
-        "phpcbf.executablePath": {
+        "ecs.executablePath": {
           "scope": "resource",
           "type": "string",
-          "default": "phpcbf",
-          "description": "Points to the phpcbf exectuable, eg: win: phpcbf.bat, other: phpcbf"
+          "default": "vendor/bin/ecs",
+          "description": "Path to the ecs executable"
         },
-        "phpcbf.standard": {
+        "ecs.checkerSets": {
           "scope": "resource",
-          "type": [
-            "string",
-            "null"
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "psr2"
           ],
-          "default": null,
-          "description": "null, PSR1, PSR2, Symfony, WordPress etc. You can also point to a phpcs.xml rules file, eg: /file/path/phpcs.xml"
-        },
-        "phpcbf.onsave": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": false,
-          "description": "Run PHP Code Beautifier and Fixer on save"
-        },
-        "phpcbf.documentFormattingProvider": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Register PHP document formatting provider, right mouse-click context menu, show as 'Format Document', after changing this option you should restart your editor."
-        },
-        "phpcbf.enable": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "This setting controls whether phpcbf formatter is enabled."
-        },
-        "phpcbf.debug": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": false,
-          "description": "Write phpcbf stdout to the console"
+          "enum": [
+            "psr2",
+            "psr12",
+            "clean-code"
+          ],
+          "description": "Select a prepared set of rules"
         }
       }
     }
@@ -91,12 +79,14 @@
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^7.0.4",
+    "@types/execa": "^0.9.0",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.9.4",
     "commitizen": "^2.10.1",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^1.0.0-rc.14",
     "jest": "^23.6.0",
+    "jest-extended": "^0.8.1",
     "lint-staged": "^7.2.2",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.14.2",
@@ -153,5 +143,8 @@
     ],
     "npmPublish": false,
     "branch": "master"
+  },
+  "dependencies": {
+    "execa": "^1.0.0"
   }
 }
