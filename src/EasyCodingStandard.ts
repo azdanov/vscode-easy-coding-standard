@@ -4,13 +4,18 @@ export class EasyCodingStandard {
   constructor(private executablePath: string) {}
 
   check(fileName: string, checkerSets: string[]) {
-    return execa(this.executablePath, [
-      "check",
-      fileName,
-      "--level",
-      checkerSets.join(" "),
-      "--no-progress-bar"
-    ]);
+    return execa(
+      this.executablePath,
+      [
+        "check",
+        fileName,
+        "--level",
+        checkerSets.join(" "),
+        "--no-progress-bar",
+        "--no-ansi"
+      ],
+      { reject: false }
+    );
   }
 
   version() {
