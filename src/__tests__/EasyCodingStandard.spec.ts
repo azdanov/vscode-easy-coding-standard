@@ -1,6 +1,8 @@
 import { EasyCodingStandard } from "../EasyCodingStandard";
 import "jest-extended";
 
+// TODO: Abort testing on windows, or find a way to run composer
+
 describe("EasyCodingStandard", async () => {
   const testFile = `${process.cwd()}/src/__fixtures__/src/index.php`;
   const formatFile = `${process.cwd()}/src/__fixtures__/src/format.php`;
