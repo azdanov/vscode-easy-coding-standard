@@ -25,9 +25,9 @@
     "test:coverage": "jest --coverage",
     "test:integration": "run-s compile vscode:test",
     "test": "jest",
-    "test:install": "run-s test:composer-install test:fixtures",
-    "test:composer": "sh composer.sh",
-    "test:fixtures": "php composer.phar install -d ./src/__fixtures__",
+    "test:install": "run-s test:install-composer test:installfixtures",
+    "test:install-composer": "sh composer.sh",
+    "test:install-fixtures": "php composer.phar install -d ./src/__fixtures__",
     "vscode:install": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "npm run build",
     "vscode:test": "node ./node_modules/vscode/bin/test",
@@ -71,9 +71,15 @@
             "psr2"
           ],
           "enum": [
+            "clean-code",
+            "common",
+            "php70",
+            "php71",
             "psr2",
             "psr12",
-            "clean-code"
+            "symfony",
+            "symfony-risky",
+            "symplify"
           ],
           "description": "Select a prepared set of rules"
         }
