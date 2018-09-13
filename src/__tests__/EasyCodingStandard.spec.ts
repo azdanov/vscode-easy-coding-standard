@@ -18,6 +18,13 @@ describe("EasyCodingStandard", async () => {
     expect(ecs).toBeObject();
   });
 
+  it("should have a dispose method", () => {
+    const ecs = new EasyCodingStandard(config.executablePath);
+
+    expect(ecs.dispose).toBeFunction();
+    expect(ecs.dispose()).toBe(undefined);
+  });
+
   it("should execute EasyCodingStandard", async () => {
     const ecs = new EasyCodingStandard(config.executablePath);
     const results = await ecs.version();
