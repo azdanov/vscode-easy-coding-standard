@@ -11,7 +11,8 @@ export class EasyCodingStandard {
         fileName,
         "--level",
         checkerSets.join(" "),
-        "--no-progress-bar"
+        "--no-progress-bar",
+        "--no-ansi"
       ],
       { reject: false }
     );
