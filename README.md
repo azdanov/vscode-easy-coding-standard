@@ -6,6 +6,9 @@
   <a href="https://circleci.com/gh/azdanov/vscode-easy-coding-standard">
     <img alt="CircleCI" src="https://circleci.com/gh/azdanov/vscode-easy-coding-standard/tree/master.svg?style=svg">
   </a>
+  <a href="https://codecov.io/gh/azdanov/vscode-easy-coding-standard">
+    <img src="https://codecov.io/gh/azdanov/vscode-easy-coding-standard/branch/master/graph/badge.svg" />
+  </a>
   <a href="https://github.com/semantic-release/semantic-release">
     <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
   </a>
