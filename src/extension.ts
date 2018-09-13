@@ -27,7 +27,7 @@ export function activate(context: ExtensionContext) {
 
       if (doc.languageId === "php") {
         const { stdout } = await ecs.version();
-        window.showInformationMessage(stdout);
+        window.showInformationMessage(stdout.trim());
       }
     })
   );
@@ -46,12 +46,10 @@ export function activate(context: ExtensionContext) {
 
       if (doc.languageId === "php") {
         let message: string;
-        try {
-          const { stdout } = await ecs.check(currentFile!, config.checkerSets);
-          message = stdout;
-        } catch (err) {
-          message = err;
-        }
+
+        const { stdout } = await ecs.check(currentFile!, config.checkerSets);
+        message = stdout.trim();
+
         const outputChannel = window.createOutputChannel("EasyCodingStandard");
 
         outputChannel.show();
