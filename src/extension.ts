@@ -32,7 +32,7 @@ export function activate(context: ExtensionContext) {
 
       if (doc.languageId === "php") {
         const { stdout } = await ecs.version();
-        window.showInformationMessage(stdout.trim());
+        outputChannel.send(stdout.trim());
       }
     })
   );
@@ -44,18 +44,14 @@ export function activate(context: ExtensionContext) {
         return;
       }
 
-      const currentFile =
-        window.activeTextEditor && window.activeTextEditor.document.uri.fsPath;
-
       const doc = editor.document;
 
       if (doc.languageId === "php") {
-        let message: string;
+        const currentFile = doc.uri.fsPath;
 
         const { stdout } = await ecs.check(currentFile!, config.checkerSets);
-        message = stdout.trim();
 
-        outputChannel.send(message);
+        outputChannel.send(stdout.trim());
       }
     })
   );
