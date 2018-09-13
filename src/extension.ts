@@ -1,6 +1,7 @@
 import { commands, ExtensionContext, window, workspace } from "vscode";
 import { EasyCodingStandard } from "./EasyCodingStandard";
 import { Config } from "./utilities/Config";
+import { Output } from "./utilities/Output";
 
 export function activate(context: ExtensionContext) {
   const workspaceConfig = workspace.getConfiguration(
@@ -15,6 +16,10 @@ export function activate(context: ExtensionContext) {
   const config = Config.create(workspaceConfig, rootDir);
 
   const ecs = new EasyCodingStandard(config.executablePath);
+
+  const outputChannel = new Output(
+    window.createOutputChannel("EasyCodingStandard")
+  );
 
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-version", async () => {
@@ -50,15 +55,7 @@ export function activate(context: ExtensionContext) {
         const { stdout } = await ecs.check(currentFile!, config.checkerSets);
         message = stdout.trim();
 
-        const outputChannel = window.createOutputChannel("EasyCodingStandard");
-
-        outputChannel.show();
-
-        const title = `${new Date().toLocaleString()}:`;
-
-        outputChannel.appendLine(title);
-        outputChannel.appendLine("-".repeat(title.length));
-        outputChannel.appendLine(`${message}\n`);
+        outputChannel.send(message);
       }
     })
   );
