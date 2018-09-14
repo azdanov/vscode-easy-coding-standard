@@ -4,10 +4,7 @@ import { Config } from "./utilities/Config";
 import { Output } from "./utilities/Output";
 
 export function activate(context: ExtensionContext) {
-  const workspaceConfig = workspace.getConfiguration(
-    "ecs",
-    window.activeTextEditor && window.activeTextEditor.document.uri
-  );
+  const workspaceConfig = workspace.getConfiguration("ecs", null);
 
   const rootDir =
     (workspace.workspaceFolders && workspace.workspaceFolders[0].uri.fsPath) ||
