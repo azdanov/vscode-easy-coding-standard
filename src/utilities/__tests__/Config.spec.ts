@@ -1,5 +1,6 @@
 import { Config } from "../Config";
 import "jest-extended";
+import { NoExecutableFound, NoCheckersFound } from "../errors";
 
 describe("Config", () => {
   let workspaceConfig: any;
@@ -16,7 +17,7 @@ describe("Config", () => {
           case "configPath":
             return configPath;
           case "checkerSets":
-            return ["prs2"];
+            return ["psr2"];
           case "executablePath":
             return executablePath;
           default:
@@ -37,7 +38,7 @@ describe("Config", () => {
     expect(config).toMatchInlineSnapshot(`
 Object {
   "checkerSets": Array [
-    "prs2",
+    "psr2",
   ],
   "configPath": "/test/easy-coding-standard.yml",
   "enable": true,
@@ -96,5 +97,34 @@ Object {
 
     expect(config.configPath).toBeString();
     expect(config.configPath).toBe("/home/easy-coding-standard.yml");
+  });
+
+  it("should verify a given config for validity", () => {
+    executablePath = `${__dirname}/__fixtures__/vendor/bin/ecs`;
+    configPath = `${__dirname}/__fixtures__/easy-coding-standard.yml`;
+
+    const config = Config.create(workspaceConfig, rootDir);
+
+    expect(Config.verify(config)).toBeTrue();
+  });
+
+  it("should throw when executable is not found", () => {
+    executablePath = `${__dirname}/__fixtures__/vendor/bin/wrong`;
+    configPath = `${__dirname}/__fixtures__/easy-coding-standard.yml`;
+
+    const config = Config.create(workspaceConfig, rootDir);
+
+    expect(() => Config.verify(config)).toThrow(NoExecutableFound);
+  });
+
+  it("should throw when no checkers are found is not found", () => {
+    executablePath = `${__dirname}/__fixtures__/vendor/bin/ecs`;
+    configPath = `${__dirname}/__fixtures__/wrong.yml`;
+
+    const config = Config.create(workspaceConfig, rootDir);
+
+    config.checkerSets = [];
+
+    expect(() => Config.verify(config)).toThrow(NoCheckersFound);
   });
 });

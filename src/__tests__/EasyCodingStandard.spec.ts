@@ -1,22 +1,19 @@
-import {
-  EasyCodingStandard,
-  EasyCodingStandardProps,
-  CheckerSets
-} from "../EasyCodingStandard";
+import { EasyCodingStandard } from "../EasyCodingStandard";
 import "jest-extended";
+import { IConfig } from "../utilities/IConfig";
 
 // TODO: Abort testing on windows, or find a way to run composer
 
 describe("EasyCodingStandard", async () => {
   const testFile = `${process.cwd()}/src/__fixtures__/src/index.php`;
   const formatFile = `${process.cwd()}/src/__fixtures__/src/format.php`;
-  let config: EasyCodingStandardProps;
+  let config: IConfig;
 
   afterEach(() => {
     config = {
       enable: false,
       onSave: false,
-      checkerSets: [CheckerSets.psr2],
+      checkerSets: ["psr2"],
       executablePath: `${process.cwd()}/src/__fixtures__/vendor/bin/ecs`,
       configPath: `${process.cwd()}/src/__fixtures__/easy-coding-standard.yml`
     };
