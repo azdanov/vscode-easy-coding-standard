@@ -3,25 +3,24 @@ import { EasyCodingStandard } from "./main/EasyCodingStandard";
 import { Config } from "./utilities/Config";
 import { Output } from "./utilities/Output";
 
-export function activate(context: ExtensionContext) {
-  function createConfig() {
-    const workspaceConfig = workspace.getConfiguration("ecs", null);
+function createConfig() {
+  const workspaceConfig = workspace.getConfiguration("ecs", null);
 
-    const rootDir =
-      (workspace.workspaceFolders &&
-        workspace.workspaceFolders[0].uri.fsPath) ||
-      process.cwd();
+  const rootDir =
+    (workspace.workspaceFolders && workspace.workspaceFolders[0].uri.fsPath) ||
+    process.cwd();
 
-    const config = Config.create(workspaceConfig, rootDir);
+  const config = Config.create(workspaceConfig, rootDir);
 
-    try {
-      Config.verify(config);
-    } catch (error) {
-      window.showErrorMessage(error.message);
-    }
-    return config;
+  try {
+    Config.verify(config);
+  } catch (error) {
+    window.showErrorMessage(error.message);
   }
+  return config;
+}
 
+export function activate(context: ExtensionContext) {
   let ecs = new EasyCodingStandard(createConfig());
 
   const outputChannel = new Output(
@@ -35,7 +34,7 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-version", async () => {
       const { stdout } = await ecs.version();
-      outputChannel.send(stdout.trim());
+      outputChannel.send(stdout);
     })
   );
 
@@ -53,7 +52,7 @@ export function activate(context: ExtensionContext) {
 
       const { stdout } = await ecs.check(currentFile!);
 
-      outputChannel.send(stdout.trim());
+      outputChannel.send(stdout);
     })
   );
   context.subscriptions.push(ecs);
