@@ -44,19 +44,25 @@
     "commands": [
       {
         "command": "extension.ecs-check",
-        "title": "EasyCodingStandard: Check this file",
-        "when": "!inOutput && editorFocus && editorLangId == php"
+        "category": "EasyCodingStandard",
+        "title": "Check this file"
       },
       {
         "command": "extension.ecs-version",
-        "title": "EasyCodingStandard: Version",
-        "when": "!inOutput && editorFocus && editorLangId == php"
+        "category": "EasyCodingStandard",
+        "title": "Version info"
       }
     ],
     "configuration": {
       "title": "PHP EasyCodingStandard",
       "type": "object",
       "properties": {
+        "ecs.enable": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Controls whether EasyCodingStandard is enabled or not."
+        },
         "ecs.executablePath": {
           "scope": "resource",
           "type": "string",
