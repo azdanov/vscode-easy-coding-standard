@@ -37,7 +37,7 @@
     "semantic-release": "semantic-release"
   },
   "activationEvents": [
-    "onLanguage:php"
+    "workspaceContains:**/*.php"
   ],
   "main": "./out/extension",
   "contributes": {

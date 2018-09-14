@@ -33,19 +33,18 @@ export function activate(context: ExtensionContext) {
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-check", async () => {
       const editor = window.activeTextEditor;
-      if (!editor) {
+      if (!editor || !(editor.document.languageId === "php")) {
+        window.showWarningMessage(
+          "This command can only be executed on a php file."
+        );
         return;
       }
 
-      const doc = editor.document;
+      const currentFile = editor.document.uri.fsPath;
 
-      if (doc.languageId === "php") {
-        const currentFile = doc.uri.fsPath;
+      const { stdout } = await ecs.check(currentFile!);
 
-        const { stdout } = await ecs.check(currentFile!);
-
-        outputChannel.send(stdout.trim());
-      }
+      outputChannel.send(stdout.trim());
     })
   );
   context.subscriptions.push(ecs);
