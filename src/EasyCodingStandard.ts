@@ -38,7 +38,6 @@ export class EasyCodingStandard {
   }
 
   version() {
-    console.log(this.config.executablePath);
     return execa(this.config.executablePath, ["--version"]);
   }
 
