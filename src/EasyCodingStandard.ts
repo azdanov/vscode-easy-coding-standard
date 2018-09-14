@@ -1,16 +1,35 @@
 import * as execa from "execa";
 
-export class EasyCodingStandard {
-  constructor(private executablePath: string) {}
+export enum CheckerSets {
+  "clean-code" = "clean-code",
+  "common" = "common",
+  "php70" = "php70",
+  "php71" = "php71",
+  "psr2" = "psr2",
+  "psr12" = "psr12",
+  "symfony" = "symfony",
+  "symfony-risky" = "symfony-risky",
+  "symplify" = "symplify"
+}
 
-  check(fileName: string, checkerSets: string[]) {
+export interface EasyCodingStandardProps {
+  checkerSets: CheckerSets[];
+  configPath: string;
+  enable: boolean;
+  executablePath: string;
+  onSave: boolean;
+}
+
+export class EasyCodingStandard {
+  constructor(private config: EasyCodingStandardProps) {}
+
+  check(fileName: string) {
     return execa(
-      this.executablePath,
+      this.config.executablePath,
       [
         "check",
         fileName,
-        "--level",
-        checkerSets.join(" "),
+        ...this.pickRules(),
         "--no-progress-bar",
         "--no-ansi"
       ],
@@ -19,9 +38,16 @@ export class EasyCodingStandard {
   }
 
   version() {
-    console.log(this.executablePath);
-    return execa(this.executablePath, ["--version"]);
+    console.log(this.config.executablePath);
+    return execa(this.config.executablePath, ["--version"]);
   }
+
+  private pickRules = () => {
+    if (this.config.configPath) {
+      return ["--config", this.config.configPath];
+    }
+    return ["--level", this.config.checkerSets.join(" ")];
+  };
 
   dispose() {}
 }

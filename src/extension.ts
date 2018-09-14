@@ -15,7 +15,7 @@ export function activate(context: ExtensionContext) {
 
   const config = Config.create(workspaceConfig, rootDir);
 
-  const ecs = new EasyCodingStandard(config.executablePath);
+  const ecs = new EasyCodingStandard(config);
 
   const outputChannel = new Output(
     window.createOutputChannel("EasyCodingStandard")
@@ -49,7 +49,7 @@ export function activate(context: ExtensionContext) {
       if (doc.languageId === "php") {
         const currentFile = doc.uri.fsPath;
 
-        const { stdout } = await ecs.check(currentFile!, config.checkerSets);
+        const { stdout } = await ecs.check(currentFile!);
 
         outputChannel.send(stdout.trim());
       }

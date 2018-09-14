@@ -2,6 +2,7 @@ import { WorkspaceConfiguration } from "vscode";
 import { homedir } from "os";
 
 import { resolve, sep } from "path";
+import { CheckerSets } from "../EasyCodingStandard";
 
 export class Config {
   static create = (config: WorkspaceConfiguration, rootDir: string) => {
@@ -9,18 +10,29 @@ export class Config {
 
     const onSave = config.get("onSave", false);
 
-    const checkerSets = config.get("checkerSets", ["psr2"]);
+    const checkerSets = config.get("checkerSets", [CheckerSets.psr2]);
+
+    let configPath = config.get("configPath", "easy-coding-standard.yml");
 
     let executablePath = config.get("executablePath", "ecs");
 
-    if (executablePath.startsWith("~")) {
+    configPath = Config.normalizePath(configPath, rootDir);
+    executablePath = Config.normalizePath(executablePath, rootDir);
+
+    return { enable, onSave, executablePath, checkerSets, configPath };
+  };
+
+  private static normalizePath = (path: string, rootDir: string) => {
+    let normalizedPath = path;
+
+    if (normalizedPath.startsWith("~")) {
       // TODO: Support Windows
-      executablePath = executablePath.replace(/^~\//, `${homedir()}${sep}`);
+      normalizedPath = normalizedPath.replace(/^~\//, `${homedir()}${sep}`);
     } else {
       // TODO: Need a robust checking of given path
-      executablePath = resolve(rootDir, executablePath);
+      normalizedPath = resolve(rootDir, normalizedPath);
     }
 
-    return { enable, onSave, executablePath, checkerSets };
+    return normalizedPath;
   };
 }

@@ -4,13 +4,17 @@ import "jest-extended";
 describe("Config", () => {
   let workspaceConfig: any;
   let executablePath: string;
+  let configPath: string;
   const rootDir = "/test";
 
   beforeEach(() => {
     executablePath = "vendor/bin/ecs";
+    configPath = "easy-coding-standard.yml";
     workspaceConfig = {
       get: jest.fn((section: string) => {
         switch (section) {
+          case "configPath":
+            return configPath;
           case "checkerSets":
             return ["prs2"];
           case "executablePath":
@@ -35,6 +39,7 @@ Object {
   "checkerSets": Array [
     "prs2",
   ],
+  "configPath": "/test/easy-coding-standard.yml",
   "enable": true,
   "executablePath": "/test/vendor/bin/ecs",
   "onSave": true,
@@ -62,7 +67,14 @@ Object {
     expect(config.executablePath).toBe(`${rootDir}/${executablePath}`);
   });
 
-  it("should return an absolute path when given relative to home", () => {
+  it("should return configPath option", () => {
+    const config = Config.create(workspaceConfig, rootDir);
+
+    expect(config.configPath).toBeString();
+    expect(config.configPath).toBe(`${rootDir}/${configPath}`);
+  });
+
+  it("should return an absolute path for executable when given a relative path", () => {
     const { Config } = require("../Config");
 
     jest.mock("os", () => ({ homedir: () => "/home" }));
@@ -72,5 +84,17 @@ Object {
 
     expect(config.executablePath).toBeString();
     expect(config.executablePath).toBe("/home/.composer/vendor/bin/ecs");
+  });
+
+  it("should return an absolute path for config when given a relative path", () => {
+    const { Config } = require("../Config");
+
+    jest.mock("os", () => ({ homedir: () => "/home" }));
+    configPath = `~/easy-coding-standard.yml`;
+
+    const config = Config.create(workspaceConfig, rootDir);
+
+    expect(config.configPath).toBeString();
+    expect(config.configPath).toBe("/home/easy-coding-standard.yml");
   });
 });
