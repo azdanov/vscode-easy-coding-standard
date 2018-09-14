@@ -1,21 +1,21 @@
 import { EasyCodingStandard } from "../EasyCodingStandard";
 import "jest-extended";
-import { IConfig } from "../utilities/IConfig";
+import { CheckerSet, IConfig } from "../../utilities/IConfig";
 
 // TODO: Abort testing on windows, or find a way to run composer
 
 describe("EasyCodingStandard", async () => {
-  const testFile = `${process.cwd()}/src/__fixtures__/src/index.php`;
-  const formatFile = `${process.cwd()}/src/__fixtures__/src/format.php`;
+  const testFile = `${process.cwd()}/src/main/__fixtures__/src/index.php`;
+  const formatFile = `${process.cwd()}/src/main/__fixtures__/src/format.php`;
   let config: IConfig;
 
   afterEach(() => {
     config = {
       enable: false,
       onSave: false,
-      checkerSets: ["psr2"],
-      executablePath: `${process.cwd()}/src/__fixtures__/vendor/bin/ecs`,
-      configPath: `${process.cwd()}/src/__fixtures__/easy-coding-standard.yml`
+      checkerSets: [CheckerSet.psr2],
+      executablePath: `${process.cwd()}/src/main/__fixtures__/vendor/bin/ecs`,
+      configPath: `${process.cwd()}/src/main/__fixtures__/easy-coding-standard.yml`
     };
   });
 
@@ -55,7 +55,7 @@ describe("EasyCodingStandard", async () => {
     config.configPath = "";
     const ecs = new EasyCodingStandard(config);
 
-    const { stdout, stderr } = await ecs.check(testFile);
+    const { stdout } = await ecs.check(testFile);
     expect(stdout).toInclude("No errors found.");
   });
 

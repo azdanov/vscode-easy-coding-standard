@@ -28,7 +28,7 @@
     "test:coverage": "jest --coverage",
     "test:install": "run-s test:install-composer test:install-fixtures",
     "test:install-composer": "sh composer.sh",
-    "test:install-fixtures": "php composer.phar install -d ./src/__fixtures__",
+    "test:install-fixtures": "php composer.phar install -d ./src/main/__fixtures__",
     "test:integration": "run-s compile vscode:test",
     "vscode:install": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "npm run build",
@@ -61,33 +61,39 @@
           "scope": "resource",
           "type": "string",
           "default": "vendor/bin/ecs",
-          "description": "Path to the ecs executable"
+          "description": "The path to the ecs executable"
         },
         "ecs.configPath": {
           "scope": "resource",
-          "type": "string",
+          "type": [
+            "string",
+            "null"
+          ],
           "default": "easy-coding-standard.yml",
-          "description": "Path to the config file"
+          "description": "The path to configuration file"
         },
         "ecs.checkerSets": {
           "scope": "resource",
-          "type": "array",
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "clean-code",
+              "common",
+              "php70",
+              "php71",
+              "psr2",
+              "psr12",
+              "symfony",
+              "symfony-risky",
+              "symplify"
+            ]
           },
           "default": [
             "psr2"
-          ],
-          "enum": [
-            "clean-code",
-            "common",
-            "php70",
-            "php71",
-            "psr2",
-            "psr12",
-            "symfony",
-            "symfony-risky",
-            "symplify"
           ],
           "description": "Select a prepared set of rules"
         }

@@ -11,7 +11,7 @@ jobs:
             - v1-dependencies-
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "src/__fixtures__/composer.json" }}
+            - v2-dependencies-{{ checksum "src/main/__fixtures__/composer.json" }}
             - v2-dependencies-
       - run:
           name: install
@@ -24,8 +24,8 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - save_cache:
           paths:
-            - src/__fixtures__/vendor
-          key: v2-dependencies-{{ checksum "src/__fixtures__/composer.json" }}
+            - src/main/__fixtures__/vendor
+          key: v2-dependencies-{{ checksum "src/main/__fixtures__/composer.json" }}
       - run:
           name: release
           command: npm run semantic-release || true

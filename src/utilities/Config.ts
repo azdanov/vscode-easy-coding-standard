@@ -38,14 +38,14 @@ export class Config {
   };
 
   private static normalizePath = (path: string, rootDir: string) => {
-    let normalizedPath = path;
+    let normalizedPath = "";
 
-    if (normalizedPath.startsWith("~")) {
+    if (path.startsWith("~")) {
       // TODO: Support Windows
-      normalizedPath = normalizedPath.replace(/^~\//, `${homedir()}${sep}`);
-    } else {
+      normalizedPath = path.replace(/^~\//, `${homedir()}${sep}`);
+    } else if (path.length > 0) {
       // TODO: Need a robust checking of given path
-      normalizedPath = resolve(rootDir, normalizedPath);
+      normalizedPath = resolve(rootDir, path);
     }
 
     return normalizedPath;

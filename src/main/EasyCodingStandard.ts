@@ -1,5 +1,5 @@
 import * as execa from "execa";
-import { IConfig } from "./utilities/IConfig";
+import { IConfig } from "../utilities/IConfig";
 
 export class EasyCodingStandard {
   constructor(private config: IConfig) {}
@@ -22,12 +22,12 @@ export class EasyCodingStandard {
     return execa(this.config.executablePath, ["--version"]);
   }
 
-  private pickRules = () => {
+  private pickRules() {
     if (this.config.configPath) {
       return ["--config", this.config.configPath];
     }
     return ["--level", this.config.checkerSets.join(" ")];
-  };
+  }
 
   dispose() {}
 }

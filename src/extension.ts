@@ -1,5 +1,5 @@
 import { commands, ExtensionContext, window, workspace } from "vscode";
-import { EasyCodingStandard } from "./EasyCodingStandard";
+import { EasyCodingStandard } from "./main/EasyCodingStandard";
 import { Config } from "./utilities/Config";
 import { Output } from "./utilities/Output";
 
@@ -15,6 +15,8 @@ export function activate(context: ExtensionContext) {
 
   const config = Config.create(workspaceConfig, rootDir);
 
+  Config.verify(config);
+
   const ecs = new EasyCodingStandard(config);
 
   const outputChannel = new Output(
@@ -23,17 +25,8 @@ export function activate(context: ExtensionContext) {
 
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-version", async () => {
-      const editor = window.activeTextEditor;
-      if (!editor) {
-        return;
-      }
-
-      const doc = editor.document;
-
-      if (doc.languageId === "php") {
-        const { stdout } = await ecs.version();
-        outputChannel.send(stdout.trim());
-      }
+      const { stdout } = await ecs.version();
+      outputChannel.send(stdout.trim());
     })
   );
 
