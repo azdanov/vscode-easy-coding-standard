@@ -9,6 +9,6 @@ export class Output {
     this.outputChannel.show();
     this.outputChannel.appendLine(title);
     this.outputChannel.appendLine("-".repeat(title.length));
-    this.outputChannel.appendLine(`${message}\n`);
+    this.outputChannel.appendLine(`${message.trim()}\n`);
   }
 }
