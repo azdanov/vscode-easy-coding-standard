@@ -26,7 +26,7 @@ export class EasyCodingStandard {
     if (this.config.configPath) {
       return ["--config", this.config.configPath];
     }
-    return ["--level", this.config.checkerSets.join(" ")];
+    return ["--level", this.config.ruleSet];
   }
 
   dispose() {}

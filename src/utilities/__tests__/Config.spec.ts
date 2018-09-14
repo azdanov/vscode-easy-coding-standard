@@ -1,6 +1,7 @@
 import { Config } from "../Config";
 import "jest-extended";
-import { NoExecutableFound, NoCheckersFound } from "../errors";
+import { NoRulesetsFound, NoExecutableFound } from "../errors";
+import { RuleSet } from "../IConfig";
 
 describe("Config", () => {
   let workspaceConfig: any;
@@ -37,13 +38,11 @@ describe("Config", () => {
 
     expect(config).toMatchInlineSnapshot(`
 Object {
-  "checkerSets": Array [
-    "psr2",
-  ],
   "configPath": "/test/easy-coding-standard.yml",
   "enable": true,
   "executablePath": "/test/vendor/bin/ecs",
   "onSave": true,
+  "ruleSet": true,
 }
 `);
     expect(config).toBeObject();
@@ -123,8 +122,8 @@ Object {
 
     const config = Config.create(workspaceConfig, rootDir);
 
-    config.checkerSets = [];
+    config.ruleSet = RuleSet[""];
 
-    expect(() => Config.verify(config)).toThrow(NoCheckersFound);
+    expect(() => Config.verify(config)).toThrow(NoRulesetsFound);
   });
 });

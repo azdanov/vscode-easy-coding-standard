@@ -4,21 +4,33 @@ import { Config } from "./utilities/Config";
 import { Output } from "./utilities/Output";
 
 export function activate(context: ExtensionContext) {
-  const workspaceConfig = workspace.getConfiguration("ecs", null);
+  function createConfig() {
+    const workspaceConfig = workspace.getConfiguration("ecs", null);
 
-  const rootDir =
-    (workspace.workspaceFolders && workspace.workspaceFolders[0].uri.fsPath) ||
-    process.cwd();
+    const rootDir =
+      (workspace.workspaceFolders &&
+        workspace.workspaceFolders[0].uri.fsPath) ||
+      process.cwd();
 
-  const config = Config.create(workspaceConfig, rootDir);
+    const config = Config.create(workspaceConfig, rootDir);
 
-  Config.verify(config);
+    try {
+      Config.verify(config);
+    } catch (error) {
+      window.showErrorMessage(error.message);
+    }
+    return config;
+  }
 
-  const ecs = new EasyCodingStandard(config);
+  let ecs = new EasyCodingStandard(createConfig());
 
   const outputChannel = new Output(
     window.createOutputChannel("EasyCodingStandard")
   );
+
+  workspace.onDidChangeConfiguration(() => {
+    ecs = new EasyCodingStandard(createConfig());
+  });
 
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-version", async () => {

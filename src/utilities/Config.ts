@@ -2,17 +2,17 @@ import { WorkspaceConfiguration } from "vscode";
 import { homedir } from "os";
 import { resolve, sep } from "path";
 import { existsSync } from "fs";
-import { CheckerSet, IConfig } from "./IConfig";
-import { NoCheckersFound, NoExecutableFound } from "./errors";
+import { RuleSet, IConfig } from "./IConfig";
+import { NoRulesetsFound, NoExecutableFound } from "./errors";
 
 export class Config {
   static create = (
     config: WorkspaceConfiguration,
     rootDir: string
   ): IConfig => {
-    const enable = config.get("enable", false);
+    const enable = config.get("enable", true);
     const onSave = config.get("onSave", false);
-    const checkerSets = config.get("checkerSets", [CheckerSet.psr2]);
+    const ruleSet = config.get("ruleSet", RuleSet[""]);
 
     let configPath = config.get("configPath", "easy-coding-standard.yml");
     let executablePath = config.get("executablePath", "ecs");
@@ -20,7 +20,7 @@ export class Config {
     configPath = Config.normalizePath(configPath, rootDir);
     executablePath = Config.normalizePath(executablePath, rootDir);
 
-    return { enable, onSave, executablePath, checkerSets, configPath };
+    return { enable, onSave, executablePath, ruleSet, configPath };
   };
 
   static verify = (config: IConfig) => {
@@ -30,8 +30,8 @@ export class Config {
       );
     }
 
-    if (Config.checkersInvalid(config)) {
-      throw new NoCheckersFound();
+    if (Config.rulesetInvalid(config)) {
+      throw new NoRulesetsFound();
     }
 
     return true;
@@ -55,7 +55,7 @@ export class Config {
     return !existsSync(config.executablePath);
   }
 
-  private static checkersInvalid(config: IConfig) {
-    return !existsSync(config.configPath) && config.checkerSets.length === 0;
+  private static rulesetInvalid(config: IConfig) {
+    return !existsSync(config.configPath) && config.ruleSet.length === 0;
   }
 }

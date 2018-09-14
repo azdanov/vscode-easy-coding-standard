@@ -1,6 +1,6 @@
 import { EasyCodingStandard } from "../EasyCodingStandard";
 import "jest-extended";
-import { CheckerSet, IConfig } from "../../utilities/IConfig";
+import { IConfig, RuleSet } from "../../utilities/IConfig";
 
 // TODO: Abort testing on windows, or find a way to run composer
 
@@ -13,7 +13,7 @@ describe("EasyCodingStandard", async () => {
     config = {
       enable: false,
       onSave: false,
-      checkerSets: [CheckerSet.psr2],
+      ruleSet: RuleSet.psr2,
       executablePath: `${process.cwd()}/src/main/__fixtures__/vendor/bin/ecs`,
       configPath: `${process.cwd()}/src/main/__fixtures__/easy-coding-standard.yml`
     };
@@ -41,7 +41,7 @@ describe("EasyCodingStandard", async () => {
   });
 
   it("should fail when no checkers are given", async () => {
-    config.checkerSets = [];
+    config.ruleSet = RuleSet[""];
     const ecs = new EasyCodingStandard(config);
 
     try {

@@ -72,32 +72,36 @@
         "ecs.configPath": {
           "scope": "resource",
           "type": [
-            "string",
-            "null"
+            "string"
           ],
           "default": "easy-coding-standard.yml",
           "description": "The path to configuration file"
         },
-        "ecs.checkerSets": {
+        "ecs.ruleSet": {
           "scope": "resource",
           "type": [
-            "array",
-            "null"
+            "string"
           ],
-          "items": {
-            "type": "string",
-            "enum": [
-              "clean-code",
-              "common",
-              "php70",
-              "php71",
-              "psr2",
-              "psr12",
-              "symfony",
-              "symfony-risky",
-              "symplify"
-            ]
-          },
+          "enum": [
+            "",
+            "array",
+            "clean-code",
+            "comments",
+            "common",
+            "control-structures",
+            "docblock",
+            "namespaces",
+            "php70",
+            "php71",
+            "phpunit",
+            "psr2",
+            "psr12",
+            "spaces",
+            "strict",
+            "symfony",
+            "symfony-risky",
+            "symplify"
+          ],
           "default": [
             "psr2"
           ],

@@ -1,4 +1,5 @@
-export enum CheckerSet {
+export enum RuleSet {
+  "" = "",
   "clean-code" = "clean-code",
   "common" = "common",
   "php70" = "php70",
@@ -11,7 +12,7 @@ export enum CheckerSet {
 }
 
 export interface IConfig {
-  checkerSets: CheckerSet[];
+  ruleSet: RuleSet;
   configPath: string;
   enable: boolean;
   executablePath: string;
