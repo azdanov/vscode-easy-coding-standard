@@ -1,12 +1,14 @@
 import { EasyCodingStandard } from "../EasyCodingStandard";
 import "jest-extended";
 import { IConfig, RuleSet } from "../../utilities/IConfig";
+import { copyFileSync, unlinkSync } from "fs";
 
 // TODO: Abort testing on windows, or find a way to run composer
 
 describe("EasyCodingStandard", async () => {
   const testFile = `${process.cwd()}/src/main/__fixtures__/src/index.php`;
   const formatFile = `${process.cwd()}/src/main/__fixtures__/src/format.php`;
+  const copiedFile = `${process.cwd()}/src/main/__fixtures__/src/copy.php`;
   let config: IConfig;
 
   afterEach(() => {
@@ -17,6 +19,10 @@ describe("EasyCodingStandard", async () => {
       executablePath: `${process.cwd()}/src/main/__fixtures__/vendor/bin/ecs`,
       configPath: `${process.cwd()}/src/main/__fixtures__/easy-coding-standard.yml`
     };
+  });
+
+  afterAll(() => {
+    unlinkSync(copiedFile);
   });
 
   it("should create an instance of EasyCodingStandard", () => {
@@ -71,5 +77,17 @@ describe("EasyCodingStandard", async () => {
 
     const { stdout } = await ecs.check(formatFile);
     expect(stdout).toInclude("[ERROR]");
+  });
+
+  it("should fix a given file", async () => {
+    copyFileSync(formatFile, copiedFile);
+
+    config.configPath = "";
+    const ecs = new EasyCodingStandard(config);
+
+    const { stdout } = await ecs.fix(copiedFile);
+    expect(stdout).toInclude("successfully fixed");
+
+    unlinkSync(copiedFile);
   });
 });

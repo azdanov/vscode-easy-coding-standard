@@ -9,10 +9,23 @@ export class EasyCodingStandard {
       this.config.executablePath,
       [
         "check",
-        fileName,
         ...this.pickRules(),
-        "--no-progress-bar",
-        "--no-ansi"
+        ...EasyCodingStandard.consoleFlags(),
+        fileName
+      ],
+      { reject: false }
+    );
+  }
+
+  fix(fileName: string) {
+    return execa(
+      this.config.executablePath,
+      [
+        "check",
+        "--fix",
+        ...this.pickRules(),
+        ...EasyCodingStandard.consoleFlags(),
+        fileName
       ],
       { reject: false }
     );
@@ -27,6 +40,10 @@ export class EasyCodingStandard {
       return ["--config", this.config.configPath];
     }
     return ["--level", this.config.ruleSet];
+  }
+
+  private static consoleFlags() {
+    return ["--no-progress-bar", "--no-ansi"];
   }
 
   dispose() {}

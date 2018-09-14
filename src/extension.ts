@@ -31,6 +31,7 @@ export function activate(context: ExtensionContext) {
     ecs = new EasyCodingStandard(createConfig());
   });
 
+  // TODO: Add progress bar
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-version", async () => {
       const { stdout } = await ecs.version();
@@ -51,6 +52,24 @@ export function activate(context: ExtensionContext) {
       const currentFile = editor.document.uri.fsPath;
 
       const { stdout } = await ecs.check(currentFile!);
+
+      outputChannel.send(stdout);
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("extension.ecs-fix", async () => {
+      const editor = window.activeTextEditor;
+      if (!editor || !(editor.document.languageId === "php")) {
+        window.showWarningMessage(
+          "This command can only be executed on a php file."
+        );
+        return;
+      }
+
+      const currentFile = editor.document.uri.fsPath;
+
+      const { stdout } = await ecs.fix(currentFile!);
 
       outputChannel.send(stdout);
     })

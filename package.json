@@ -48,6 +48,11 @@
         "title": "Check this file"
       },
       {
+        "command": "extension.ecs-fix",
+        "category": "EasyCodingStandard",
+        "title": "Fix this file"
+      },
+      {
         "command": "extension.ecs-version",
         "category": "EasyCodingStandard",
         "title": "Version info"
