@@ -1,25 +1,17 @@
-<h1 align="center" style="border-bottom: none;">🐘 EasyCodingStandard for Visual Studio Code</h1>
+# EasyCodingStandard for Visual Studio Code
 
-<h3 align="center">The Easiest Way to Use Any Coding Standard</h3>
+[![Build Status](https://circleci.com/gh/azdanov/vscode-easy-coding-standard.svg?style=svg)](https://circleci.com/gh/azdanov/vscode-easy-coding-standard) [![Code Coverage](https://codecov.io/gh/azdanov/vscode-easy-coding-standard/branch/master/graph/badge.svg)](https://codecov.io/gh/azdanov/vscode-easy-coding-standard) [![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-<p align="center">
-  <a href="https://circleci.com/gh/azdanov/vscode-easy-coding-standard">
-    <img alt="CircleCI" src="https://circleci.com/gh/azdanov/vscode-easy-coding-standard/tree/master.svg?style=svg">
-  </a>
-  <a href="https://codecov.io/gh/azdanov/vscode-easy-coding-standard">
-    <img src="https://codecov.io/gh/azdanov/vscode-easy-coding-standard/branch/master/graph/badge.svg" />
-  </a>
-  <a href="https://github.com/semantic-release/semantic-release">
-    <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
-  </a>
-</p>
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-Visual Studio Code extension to format and lint your PHP code using EasyCodingStandard. It serves as a wrapper around EasyCodingStandard.
+> The Easiest Way to Use Any Coding Standard
+
+🐘 Visual Studio Code extension to format and lint your PHP code using [EasyCodingStandard](https://github.com/Symplify/EasyCodingStandard).
 
 ## Features
 
-- Use [PHP_CodeSniffer || PHP-CS-Fixer](https://www.tomasvotruba.cz/blog/2017/05/03/combine-power-of-php-code-sniffer-and-php-cs-fixer-in-3-lines/) - anything you like
-- **2nd run under few seconds** with caching
+- Use [PHP_CodeSniffer | PHP-CS-Fixer](https://www.tomasvotruba.cz/blog/2017/05/03/combine-power-of-php-code-sniffer-and-php-cs-fixer-in-3-lines/) - anything you like
+- Next run _under few seconds_ with caching
 - [Skipping files](https://github.com/Symplify/EasyCodingStandard#ignore-what-you-cant-fix) for specific checkers
 - [Prepared checker sets](https://github.com/Symplify/EasyCodingStandard#use-prepared-checker-sets) - PSR2, PSR12, Symfony, Common, Symplify and more...
 
@@ -30,19 +22,56 @@ Are you already using another tool?
 
 ## Requirements
 
-This extension depends on [Symplify/EasyCodingStandard](https://github.com/Symplify/EasyCodingStandard#install) to be installed locally in the project.
+This extension depends on [Symplify/EasyCodingStandard](https://github.com/Symplify/EasyCodingStandard#install) to be installed locally in the project or globally by specifying `configPath` in the settings.
 
 ## Extension Settings
 
-TODO: Settings
+By the default `configPath` takes precedence over `ruleSet`.
 
-## Known Issues
+- `ecs.executablePath` - The path to the EasyCodingStandard executable. Default: `vendor/bin/ecs`
+- `ecs.configPath` - The path to the [configuration file](https://github.com/Symplify/EasyCodingStandard#1-create-configuration-and-setup-checkers). Default: `easy-coding-standard.yml`
+- `ecs.ruleSet` - A prepared [ruleset](https://github.com/Symplify/EasyCodingStandard#use-prepared-checker-sets) to use. Default: `psr2`
 
-TODO: Issues
+## Issues
+
+An issue can occur either from this _extension_ or from _EasyCodingStandard_. Please manually verify where the issue originates by using the [EasyCodingStandard CLI](https://github.com/Symplify/EasyCodingStandard#usage) and file a request accordingly.
+
+- [VSCode EasyCodingStandard Issue](https://github.com/azdanov/vscode-easy-coding-standard/issues/new)
+- [EasyCodingStandard Issue](https://github.com/Symplify/Symplify/issues/new)
+
+## Contributing
+
+### Tests
+
+Testing is done with the help of [jest](https://jestjs.io/) and [jest-extended](https://github.com/jest-community/jest-extended).
+
+```shell
+# Test commands:
+
+# Install necessary testing dependencies
+npm run test:install
+
+# Run all tests
+npm run test
+
+# Run in watch mode
+npm run test -- --watch
+
+# Create a coverage report
+npm run test:coverage
+```
+
+### Style guide
+
+[Prettier](https://prettier.io/) _(default settings)_ is used to maintain formatting. [TSLint](https://github.com/palantir/tslint) for linting. Each commit is automatically processed by using a git hook via [lint-staged](https://github.com/okonet/lint-staged) and [husky](https://github.com/typicode/husky).
 
 ## Release Notes
 
 [Changelog](./CHANGELOG.md)
+
+## Licensing
+
+[MIT](./LICENSE)
 
 ---
 

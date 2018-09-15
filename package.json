@@ -62,12 +62,6 @@
       "title": "PHP EasyCodingStandard",
       "type": "object",
       "properties": {
-        "ecs.enable": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Controls whether EasyCodingStandard is enabled or not."
-        },
         "ecs.executablePath": {
           "scope": "resource",
           "type": "string",
@@ -80,7 +74,7 @@
             "string"
           ],
           "default": "easy-coding-standard.yml",
-          "description": "The path to configuration file"
+          "description": "The path to the configuration file"
         },
         "ecs.ruleSet": {
           "scope": "resource",
