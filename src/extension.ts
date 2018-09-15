@@ -21,19 +21,27 @@ function createConfig() {
 }
 
 export function activate(context: ExtensionContext) {
-  let ecs = new EasyCodingStandard(createConfig());
+  let config = createConfig();
+  let ecs = new EasyCodingStandard(config);
 
   const outputChannel = new Output(
     window.createOutputChannel("EasyCodingStandard")
   );
 
   workspace.onDidChangeConfiguration(() => {
-    ecs = new EasyCodingStandard(createConfig());
+    config = createConfig();
+    ecs = new EasyCodingStandard(config);
   });
 
   // TODO: Add progress bar
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-version", async () => {
+      // TODO: Refactor enable check
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
       const { stdout } = await ecs.version();
       outputChannel.send(stdout);
     })
@@ -41,7 +49,13 @@ export function activate(context: ExtensionContext) {
 
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-check", async () => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
       const editor = window.activeTextEditor;
+
       if (!editor || !(editor.document.languageId === "php")) {
         window.showWarningMessage(
           "This command can only be executed on a php file."
@@ -59,7 +73,13 @@ export function activate(context: ExtensionContext) {
 
   context.subscriptions.push(
     commands.registerCommand("extension.ecs-fix", async () => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
       const editor = window.activeTextEditor;
+
       if (!editor || !(editor.document.languageId === "php")) {
         window.showWarningMessage(
           "This command can only be executed on a php file."

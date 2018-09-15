@@ -98,13 +98,24 @@ Object {
     expect(config.configPath).toBe("/home/easy-coding-standard.yml");
   });
 
+  it("should return an empty path when no path is specified", () => {
+    const { Config } = require("../Config");
+
+    configPath = "";
+
+    const config = Config.create(workspaceConfig, rootDir);
+
+    expect(config.configPath).toBeString();
+    expect(config.configPath).toBe("");
+  });
+
   it("should verify a given config for validity", () => {
     executablePath = `${__dirname}/__fixtures__/vendor/bin/ecs`;
     configPath = `${__dirname}/__fixtures__/easy-coding-standard.yml`;
 
     const config = Config.create(workspaceConfig, rootDir);
 
-    expect(Config.verify(config)).toBeTrue();
+    expect(Config.verify(config)).toBeUndefined();
   });
 
   it("should throw when executable is not found", () => {
@@ -125,5 +136,16 @@ Object {
     config.ruleSet = RuleSet[""];
 
     expect(() => Config.verify(config)).toThrow(NoRulesetsFound);
+  });
+
+  it("should return when extension is disabled", () => {
+    executablePath = `${__dirname}/__fixtures__/vendor/bin/wrong`;
+    configPath = `${__dirname}/__fixtures__/wrong.yml`;
+
+    const config = Config.create(workspaceConfig, rootDir);
+
+    config.enable = false;
+
+    expect(Config.verify(config)).toBeUndefined();
   });
 });

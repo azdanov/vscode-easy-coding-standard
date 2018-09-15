@@ -24,6 +24,10 @@ export class Config {
   };
 
   static verify = (config: IConfig) => {
+    if (!config.enable) {
+      return;
+    }
+
     if (Config.executableInvalid(config)) {
       throw new NoExecutableFound(
         `Executable not found: ${config.executablePath}`
@@ -33,22 +37,20 @@ export class Config {
     if (Config.rulesetInvalid(config)) {
       throw new NoRulesetsFound();
     }
-
-    return true;
   };
 
   private static normalizePath = (path: string, rootDir: string) => {
-    let normalizedPath = "";
-
     if (path.startsWith("~")) {
       // TODO: Support Windows
-      normalizedPath = path.replace(/^~\//, `${homedir()}${sep}`);
-    } else if (path.length > 0) {
-      // TODO: Need a robust checking of given path
-      normalizedPath = resolve(rootDir, path);
+      return path.replace(/^~\//, `${homedir()}${sep}`);
     }
 
-    return normalizedPath;
+    if (path.length > 0) {
+      // TODO: Need a robust checking of given path
+      return resolve(rootDir, path);
+    }
+
+    return "";
   };
 
   private static executableInvalid(config: IConfig) {
