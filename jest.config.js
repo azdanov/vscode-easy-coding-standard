@@ -9,6 +9,7 @@ module.exports = {
   },
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  setupTestFrameworkScriptFile: "jest-extended",
   verbose: true,
   roots: ["<rootDir>/src/"],
   testEnvironment: "node"

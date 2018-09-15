@@ -1,10 +1,15 @@
 {
   "name": "vscode-easy-coding-standard",
-  "displayName": "VSCode EasyCodingStandard",
-  "description": "Easiest way to start using PHP CS Fixer and PHP_CodeSniffer with 0-knowledge.",
+  "displayName": "EasyCodingStandard",
+  "description": "Easiest way to start using PHP-CS-Fixer and PHP_CodeSniffer with 0-knowledge.",
   "version": "0.0.0-development",
   "publisher": "azdanov",
   "license": "MIT",
+  "homepage": "https://github.com/azdanov/vscode-easy-coding-standard",
+  "bugs": {
+    "url": "https://github.com/azdanov/vscode-easy-coding-standard/issues",
+    "email": "azdanov@pm.me"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azdanov/vscode-easy-coding-standard.git"
@@ -14,46 +19,127 @@
   },
   "categories": [
     "Formatters",
-    "Linters",
-    "Other"
+    "Linters"
+  ],
+  "keywords": [
+    "PHP",
+    "EasyCodingStandard"
   ],
   "scripts": {
+    "build": "npm run compile",
+    "ci:coverage": "run-s test:coverage codecov",
+    "clean": "rimraf out",
+    "codecov": "codecov",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
     "compile": "tsc -p ./",
     "cz": "git-cz",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "test:coverage": "jest --coverage",
-    "test:integration": "run-s compile vscode:test",
+    "postinstall": "run-p vscode:install",
     "test": "jest",
-    "vscode:prepublish": "run-s compile",
+    "test:coverage": "jest --coverage",
+    "test:install": "run-s test:install-composer test:install-fixtures",
+    "test:install-composer": "sh composer.sh",
+    "test:install-fixtures": "php composer.phar install -d ./src/main/__fixtures__",
+    "test:integration": "run-s compile vscode:test",
+    "vscode:install": "node ./node_modules/vscode/bin/install",
+    "vscode:prepublish": "npm run build",
     "vscode:test": "node ./node_modules/vscode/bin/test",
     "watch": "tsc -watch -p ./",
     "semantic-release": "semantic-release"
   },
   "activationEvents": [
-    "onCommand:extension.sayHello"
+    "workspaceContains:**/*.php"
   ],
+  "icon": "./assets/elephant.png",
   "main": "./out/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.sayHello",
-        "title": "Hello World"
+        "command": "extension.ecs-check",
+        "category": "EasyCodingStandard",
+        "title": "Check this file"
+      },
+      {
+        "command": "extension.ecs-fix",
+        "category": "EasyCodingStandard",
+        "title": "Fix this file"
+      },
+      {
+        "command": "extension.ecs-version",
+        "category": "EasyCodingStandard",
+        "title": "Version info"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "PHP EasyCodingStandard",
+      "type": "object",
+      "properties": {
+        "ecs.executablePath": {
+          "scope": "resource",
+          "type": "string",
+          "default": "vendor/bin/ecs",
+          "description": "The path to the ecs executable"
+        },
+        "ecs.configPath": {
+          "scope": "resource",
+          "type": [
+            "string"
+          ],
+          "default": "easy-coding-standard.yml",
+          "description": "The path to the configuration file"
+        },
+        "ecs.ruleSet": {
+          "scope": "resource",
+          "type": [
+            "string"
+          ],
+          "enum": [
+            "",
+            "array",
+            "clean-code",
+            "comments",
+            "common",
+            "control-structures",
+            "docblock",
+            "namespaces",
+            "php70",
+            "php71",
+            "phpunit",
+            "psr2",
+            "psr12",
+            "spaces",
+            "strict",
+            "symfony",
+            "symfony-risky",
+            "symplify"
+          ],
+          "default": [
+            "psr2"
+          ],
+          "description": "Select a prepared set of rules"
+        }
+      }
+    }
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.0",
     "@semantic-release/git": "^7.0.4",
+    "@types/execa": "^0.9.0",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.9.4",
+    "all-contributors-cli": "^5.4.0",
+    "codecov": "^3.1.0",
     "commitizen": "^2.10.1",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^1.0.0-rc.14",
     "jest": "^23.6.0",
+    "jest-extended": "^0.8.1",
     "lint-staged": "^7.2.2",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.14.2",
+    "rimraf": "^2.6.2",
     "semantic-release": "^15.9.15",
+    "semantic-release-vsce": "^2.1.2",
     "ts-jest": "^23.1.4",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.11.0",
@@ -92,18 +178,33 @@
   },
   "release": {
     "verifyConditions": [
+      "semantic-release-vsce",
       "@semantic-release/changelog",
       "@semantic-release/git",
       "@semantic-release/github"
     ],
     "prepare": [
+      {
+        "path": "semantic-release-vsce",
+        "packageVsix": "vscode-easy-coding-standard.vsix"
+      },
       "@semantic-release/changelog",
       "@semantic-release/git"
+    ],
+    "publish": [
+      "semantic-release-vsce",
+      {
+        "path": "@semantic-release/github",
+        "assets": "vscode-easy-coding-standard.vsix"
+      }
     ],
     "success": [
       "@semantic-release/github"
     ],
     "npmPublish": false,
     "branch": "master"
+  },
+  "dependencies": {
+    "execa": "^1.0.0"
   }
 }
