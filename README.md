@@ -2,7 +2,7 @@
 
 # EasyCodingStandard for Visual Studio Code
 
-[![Build Status](https://circleci.com/gh/azdanov/vscode-easy-coding-standard.svg?style=svg)](https://circleci.com/gh/azdanov/vscode-easy-coding-standard) [![Code Coverage](https://codecov.io/gh/azdanov/vscode-easy-coding-standard/branch/master/graph/badge.svg)](https://codecov.io/gh/azdanov/vscode-easy-coding-standard) [![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![Build Status](https://img.shields.io/circleci/project/github/azdanov/vscode-easy-coding-standard.png)](https://circleci.com/gh/azdanov/vscode-easy-coding-standard) [![Code Coverage](https://img.shields.io/codecov/c/github/azdanov/vscode-easy-coding-standard.png)](https://codecov.io/gh/azdanov/vscode-easy-coding-standard) [![Semantic Release](https://img.shields.io/badge/deploy-semantic--release-%23db077c.png)](https://github.com/semantic-release/semantic-release) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.png)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.png)](./LICENSE)
 
 > The Easiest Way to Use Any Coding Standard 🐘
 
