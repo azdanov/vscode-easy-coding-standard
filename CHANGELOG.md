@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.0.1...v1.1.0) (2018-09-15)
+
+
+### Features
+
+* **project:** add enable functionality ([a86470f](https://github.com/azdanov/vscode-easy-coding-standard/commit/a86470f))
+
 ## [1.0.1](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.0.0...v1.0.1) (2018-09-15)
 
 
