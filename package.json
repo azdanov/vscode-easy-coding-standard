@@ -50,7 +50,7 @@
   "activationEvents": [
     "workspaceContains:**/*.php"
   ],
-  "icon": "./assets/elephant.png",
+  "icon": "assets/elephant.png",
   "main": "./out/extension",
   "contributes": {
     "commands": [
