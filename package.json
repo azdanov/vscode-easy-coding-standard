@@ -1,10 +1,15 @@
 {
   "name": "vscode-easy-coding-standard",
   "displayName": "EasyCodingStandard",
-  "description": "Easiest way to start using PHP CS Fixer and PHP_CodeSniffer with 0-knowledge.",
+  "description": "Easiest way to start using PHP-CS-Fixer and PHP_CodeSniffer with 0-knowledge.",
   "version": "0.0.0-development",
   "publisher": "azdanov",
   "license": "MIT",
+  "homepage": "https://github.com/azdanov/vscode-easy-coding-standard",
+  "bugs": {
+    "url": "https://github.com/azdanov/vscode-easy-coding-standard/issues",
+    "email": "azdanov@pm.me"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/azdanov/vscode-easy-coding-standard.git"
@@ -15,6 +20,10 @@
   "categories": [
     "Formatters",
     "Linters"
+  ],
+  "keywords": [
+    "PHP",
+    "EasyCodingStandard"
   ],
   "scripts": {
     "build": "npm run compile",
@@ -41,6 +50,7 @@
   "activationEvents": [
     "workspaceContains:**/*.php"
   ],
+  "icon": "./assets/elephant.png",
   "main": "./out/extension",
   "contributes": {
     "commands": [
@@ -129,6 +139,7 @@
     "prettier": "^1.14.2",
     "rimraf": "^2.6.2",
     "semantic-release": "^15.9.15",
+    "semantic-release-vsce": "^2.1.2",
     "ts-jest": "^23.1.4",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.11.0",
@@ -167,13 +178,25 @@
   },
   "release": {
     "verifyConditions": [
+      "semantic-release-vsce",
       "@semantic-release/changelog",
       "@semantic-release/git",
       "@semantic-release/github"
     ],
     "prepare": [
+      {
+        "path": "semantic-release-vsce",
+        "packageVsix": "vscode-easy-coding-standard.vsix"
+      },
       "@semantic-release/changelog",
       "@semantic-release/git"
+    ],
+    "publish": [
+      "semantic-release-vsce",
+      {
+        "path": "@semantic-release/github",
+        "assets": "vscode-easy-coding-standard.vsix"
+      }
     ],
     "success": [
       "@semantic-release/github"
