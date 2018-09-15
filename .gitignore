@@ -1,8 +1,8 @@
 out
 node_modules
 .vscode-test/
-*.vsix
 .idea/
+*.vsix
 composer.phar
 coverage/
 .DS_Store
