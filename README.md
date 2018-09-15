@@ -24,6 +24,12 @@ Are you already using another tool?
 
 This extension depends on [Symplify/EasyCodingStandard](https://github.com/Symplify/EasyCodingStandard#install) to be installed locally in the project or globally by specifying `configPath` in the settings.
 
+## Usage
+
+### Using Command Palette (CMD/CTRL + Shift + P)
+
+1. `CMD/CTRL` + `Shift` + `P` -> `EasyCodingStandard`
+
 ## Extension Settings
 
 By the default `configPath` takes precedence over `ruleSet`.
