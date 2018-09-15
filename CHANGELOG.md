@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.0.0...v1.0.1) (2018-09-15)
+
+
+### Bug Fixes
+
+* **project:** dummy commit to trigger a rebuild ([5ae18f2](https://github.com/azdanov/vscode-easy-coding-standard/commit/5ae18f2))
+
 # 1.0.0 (2018-09-15)
 
 
