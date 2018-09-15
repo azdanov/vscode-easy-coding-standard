@@ -41,6 +41,12 @@ An issue can occur either from this _extension_ or from _EasyCodingStandard_. Pl
 
 ## Contributing
 
+[CONTRIBUTING](./CONTRIBUTING.md)
+
+### Style guide
+
+[Prettier](https://prettier.io/) _(default settings)_ is used to maintain formatting. [TSLint](https://github.com/palantir/tslint) for linting. Each commit is automatically processed by using a git hook via [lint-staged](https://github.com/okonet/lint-staged) and [husky](https://github.com/typicode/husky).
+
 ### Tests
 
 Testing is done with the help of [jest](https://jestjs.io/) and [jest-extended](https://github.com/jest-community/jest-extended).
@@ -61,13 +67,22 @@ npm run test -- --watch
 npm run test:coverage
 ```
 
-### Style guide
+## Contributors
 
-[Prettier](https://prettier.io/) _(default settings)_ is used to maintain formatting. [TSLint](https://github.com/palantir/tslint) for linting. Each commit is automatically processed by using a git hook via [lint-staged](https://github.com/okonet/lint-staged) and [husky](https://github.com/typicode/husky).
+Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars2.githubusercontent.com/u/6123841?v=4" width="100px;"/><br /><sub><b>Anton Zdanov</b></sub>](https://azdanov.js.org/)<br />[💻](https://github.com/azdanov/vscode-easy-coding-standard/commits?author=azdanov "Code") [📖](https://github.com/azdanov/vscode-easy-coding-standard/commits?author=azdanov "Documentation") [🤔](#ideas-azdanov "Ideas, Planning, & Feedback") [🚇](#infra-azdanov "Infrastructure (Hosting, Build-Tools, etc)") [📦](#platform-azdanov "Packaging/porting to new platform") [⚠️](https://github.com/azdanov/vscode-easy-coding-standard/commits?author=azdanov "Tests") |
+| :---: |
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
 
 ## Release Notes
 
-[Changelog](./CHANGELOG.md)
+[CHANGELOG](./CHANGELOG.md)
 
 ## Licensing
 

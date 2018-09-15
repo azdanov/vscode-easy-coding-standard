@@ -1,0 +1,27 @@
+{
+  "projectName": "vscode-easy-coding-standard",
+  "projectOwner": "azdanov",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "azdanov",
+      "name": "Anton Zdanov",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6123841?v=4",
+      "profile": "https://azdanov.js.org/",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "infra",
+        "platform",
+        "test"
+      ]
+    }
+  ]
+}
