@@ -40,7 +40,7 @@ By the default `configPath` takes precedence over `ruleSet`.
 
 ## Issues
 
-An issue can occur either from this _extension_ or from _EasyCodingStandard_. Please manually verify where the issue originates by using the [EasyCodingStandard CLI](https://github.com/Symplify/EasyCodingStandard#usage) and file a request accordingly.
+An issue can occur either from _vscode extension_ or from _EasyCodingStandard_. Please manually verify where the issue originates by using the [EasyCodingStandard CLI](https://github.com/Symplify/EasyCodingStandard#usage) and file a request accordingly.
 
 - [VSCode EasyCodingStandard Issue](https://github.com/azdanov/vscode-easy-coding-standard/issues/new)
 - [EasyCodingStandard Issue](https://github.com/Symplify/Symplify/issues/new)
@@ -93,7 +93,3 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 ## Licensing
 
 [MIT](./LICENSE)
-
----
-
-**Enjoy!**
