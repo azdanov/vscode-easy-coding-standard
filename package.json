@@ -57,12 +57,12 @@
       {
         "command": "extension.ecs-check",
         "category": "EasyCodingStandard",
-        "title": "Check this file"
+        "title": "Check file"
       },
       {
         "command": "extension.ecs-fix",
         "category": "EasyCodingStandard",
-        "title": "Fix this file"
+        "title": "Fix file"
       },
       {
         "command": "extension.ecs-version",
@@ -87,6 +87,36 @@
       }
     ],
     "menus": {
+      "commandPalette": [
+        {
+          "command": "extension.ecs-version",
+          "when": "editorIsOpen"
+        },
+        {
+          "command": "extension.ecs-check",
+          "when": "editorLangId == php"
+        },
+        {
+          "command": "extension.ecs-fix",
+          "when": "editorLangId == php"
+        },
+        {
+          "command": "extension.ecs-check-folder",
+          "when": "false"
+        },
+        {
+          "command": "extension.ecs-fix-folder",
+          "when": "false"
+        },
+        {
+          "command": "extension.ecs-check-file",
+          "when": "false"
+        },
+        {
+          "command": "extension.ecs-fix-file",
+          "when": "false"
+        }
+      ],
       "explorer/context": [
         {
           "command": "extension.ecs-check-folder",
