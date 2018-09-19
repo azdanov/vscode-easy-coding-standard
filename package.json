@@ -72,6 +72,10 @@
       {
         "command": "extension.ecs-check-folder",
         "title": "EasyCodingStandard: Check folder"
+      },
+      {
+        "command": "extension.ecs-fix-folder",
+        "title": "EasyCodingStandard: Fix folder"
       }
     ],
     "menus": {
@@ -79,7 +83,12 @@
         {
           "command": "extension.ecs-check-folder",
           "when": "explorerResourceIsFolder",
-          "group": "7_modification"
+          "group": "z_commands"
+        },
+        {
+          "command": "extension.ecs-fix-folder",
+          "when": "explorerResourceIsFolder",
+          "group": "z_commands"
         }
       ]
     },
