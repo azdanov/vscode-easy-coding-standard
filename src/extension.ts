@@ -79,45 +79,6 @@ export function activate(context: ExtensionContext) {
   );
 
   context.subscriptions.push(
-    commands.registerCommand("extension.ecs-check-folder", async folder => {
-      if (!config.enable) {
-        window.showWarningMessage("EasyCodingStandard is disabled");
-        return;
-      }
-
-      const { stdout } = await ecs.check(folder.fsPath);
-
-      outputChannel.send(stdout);
-    })
-  );
-
-  context.subscriptions.push(
-    commands.registerCommand("extension.ecs-fix-folder", async folder => {
-      if (!config.enable) {
-        window.showWarningMessage("EasyCodingStandard is disabled");
-        return;
-      }
-
-      const { stdout } = await ecs.fix(folder.fsPath);
-
-      outputChannel.send(stdout);
-    })
-  );
-
-  context.subscriptions.push(
-    commands.registerCommand("extension.ecs-check-file", async file => {
-      if (!config.enable) {
-        window.showWarningMessage("EasyCodingStandard is disabled");
-        return;
-      }
-
-      const { stdout } = await ecs.check(file.fsPath);
-
-      outputChannel.send(stdout);
-    })
-  );
-
-  context.subscriptions.push(
     commands.registerCommand("extension.ecs-fix-file", async file => {
       if (!config.enable) {
         window.showWarningMessage("EasyCodingStandard is disabled");
