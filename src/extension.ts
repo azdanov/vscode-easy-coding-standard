@@ -47,53 +47,89 @@ export function activate(context: ExtensionContext) {
     })
   );
 
+  // TODO: Refactor command subscriptions to reduce repetition
   context.subscriptions.push(
-    commands.registerCommand("extension.ecs-check", async () => {
+    commands.registerTextEditorCommand("extension.ecs-check", async editor => {
       if (!config.enable) {
         window.showWarningMessage("EasyCodingStandard is disabled");
         return;
       }
 
-      const editor = window.activeTextEditor;
-
-      if (!editor || !(editor.document.languageId === "php")) {
-        window.showWarningMessage(
-          "This command can only be executed on a php file."
-        );
-        return;
-      }
-
       const currentFile = editor.document.uri.fsPath;
 
-      const { stdout } = await ecs.check(currentFile!);
+      const { stdout } = await ecs.check(currentFile);
 
       outputChannel.send(stdout);
     })
   );
 
   context.subscriptions.push(
-    commands.registerCommand("extension.ecs-fix", async () => {
+    commands.registerTextEditorCommand("extension.ecs-fix", async editor => {
       if (!config.enable) {
         window.showWarningMessage("EasyCodingStandard is disabled");
         return;
       }
 
-      const editor = window.activeTextEditor;
-
-      if (!editor || !(editor.document.languageId === "php")) {
-        window.showWarningMessage(
-          "This command can only be executed on a php file."
-        );
-        return;
-      }
-
       const currentFile = editor.document.uri.fsPath;
 
-      const { stdout } = await ecs.fix(currentFile!);
+      const { stdout } = await ecs.fix(currentFile);
 
       outputChannel.send(stdout);
     })
   );
+
+  context.subscriptions.push(
+    commands.registerCommand("extension.ecs-check-folder", async folder => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
+      const { stdout } = await ecs.check(folder.fsPath);
+
+      outputChannel.send(stdout);
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("extension.ecs-fix-folder", async folder => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
+      const { stdout } = await ecs.fix(folder.fsPath);
+
+      outputChannel.send(stdout);
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("extension.ecs-check-file", async file => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
+      const { stdout } = await ecs.check(file.fsPath);
+
+      outputChannel.send(stdout);
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand("extension.ecs-fix-file", async file => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
+      const { stdout } = await ecs.fix(file.fsPath);
+
+      outputChannel.send(stdout);
+    })
+  );
+
   context.subscriptions.push(ecs);
 }
 
