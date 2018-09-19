@@ -76,6 +76,14 @@
       {
         "command": "extension.ecs-fix-folder",
         "title": "EasyCodingStandard: Fix folder"
+      },
+      {
+        "command": "extension.ecs-check-file",
+        "title": "EasyCodingStandard: Check file"
+      },
+      {
+        "command": "extension.ecs-fix-file",
+        "title": "EasyCodingStandard: Fix file"
       }
     ],
     "menus": {
@@ -88,6 +96,11 @@
         {
           "command": "extension.ecs-fix-folder",
           "when": "explorerResourceIsFolder",
+          "group": "z_commands"
+        },
+        {
+          "command": "extension.ecs-check-file",
+          "when": "resourceLangId == php",
           "group": "z_commands"
         }
       ]
