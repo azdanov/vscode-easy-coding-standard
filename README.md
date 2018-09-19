@@ -2,7 +2,7 @@
 
 # EasyCodingStandard for Visual Studio Code
 
-[![Build Status](https://img.shields.io/circleci/project/github/azdanov/vscode-easy-coding-standard.png)](https://circleci.com/gh/azdanov/vscode-easy-coding-standard) [![Code Coverage](https://img.shields.io/codecov/c/github/azdanov/vscode-easy-coding-standard.png)](https://codecov.io/gh/azdanov/vscode-easy-coding-standard) [![Semantic Release](https://img.shields.io/badge/deploy-semantic--release-%23db077c.png)](https://github.com/semantic-release/semantic-release) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.png)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.png)](./LICENSE)
+[![PR Welcome](https://img.shields.io/badge/PR-welcome-orange.png)](http://makeapullrequest.com) [![Build Status](https://img.shields.io/circleci/project/github/azdanov/vscode-easy-coding-standard.png)](https://circleci.com/gh/azdanov/vscode-easy-coding-standard) [![Code Coverage](https://img.shields.io/codecov/c/github/azdanov/vscode-easy-coding-standard.png)](https://codecov.io/gh/azdanov/vscode-easy-coding-standard) [![GitHub release](https://img.shields.io/github/release/azdanov/vscode-easy-coding-standard.png?colorB=brightgreen)](https://marketplace.visualstudio.com/items?itemName=azdanov.vscode-easy-coding-standard) [![Semantic Release](https://img.shields.io/badge/deploy-semantic--release-blue.png)](https://github.com/semantic-release/semantic-release) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.png)](https://github.com/azdanov/vscode-easy-coding-standard/blob/master/LICENSE)
 
 > The Easiest Way to Use Any Coding Standard 🐘
 
