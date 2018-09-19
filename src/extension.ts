@@ -156,6 +156,19 @@ export function activate(context: ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(
+    commands.registerCommand("extension.ecs-fix-file", async file => {
+      if (!config.enable) {
+        window.showWarningMessage("EasyCodingStandard is disabled");
+        return;
+      }
+
+      const { stdout } = await ecs.fix(file.fsPath);
+
+      outputChannel.send(stdout);
+    })
+  );
+
   context.subscriptions.push(ecs);
 }
 

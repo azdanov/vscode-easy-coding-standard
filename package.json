@@ -102,6 +102,11 @@
           "command": "extension.ecs-check-file",
           "when": "resourceLangId == php",
           "group": "z_commands"
+        },
+        {
+          "command": "extension.ecs-fix-file",
+          "when": "resourceLangId == php",
+          "group": "z_commands"
         }
       ]
     },
