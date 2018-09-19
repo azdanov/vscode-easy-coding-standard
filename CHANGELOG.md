@@ -1,3 +1,14 @@
+# [1.2.0](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.1.0...v1.2.0) (2018-09-19)
+
+
+### Features
+
+* **extension:** add check file to context menu ([073374c](https://github.com/azdanov/vscode-easy-coding-standard/commit/073374c))
+* **extension:** add context menu for checking folder content ([5f20c2a](https://github.com/azdanov/vscode-easy-coding-standard/commit/5f20c2a))
+* **extension:** add fix file to context menu ([48ab960](https://github.com/azdanov/vscode-easy-coding-standard/commit/48ab960))
+* **extension:** add fix folder to context menu ([3324983](https://github.com/azdanov/vscode-easy-coding-standard/commit/3324983))
+* **extension:** show only relevant commands ([9b08959](https://github.com/azdanov/vscode-easy-coding-standard/commit/9b08959))
+
 # [1.1.0](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.0.1...v1.1.0) (2018-09-15)
 
 
