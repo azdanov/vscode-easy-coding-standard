@@ -1,4 +1,5 @@
 import { NoExecutableFound } from "..";
+import "jest-extended";
 
 describe("NoExecutableFound", () => {
   it("should create an instance of NoExecutableFound", () => {

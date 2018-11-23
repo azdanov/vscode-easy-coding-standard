@@ -1,4 +1,5 @@
 import { NoRulesetsFound } from "..";
+import "jest-extended";
 
 describe("NoRulesetsFound", () => {
   it("should create an instance of NoRulesetsFound", () => {
