@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.3.0...v1.4.0) (2018-12-26)
+
+
+### Features
+
+* **project:** bump deps version ([77ea217](https://github.com/azdanov/vscode-easy-coding-standard/commit/77ea217))
+
 # [1.3.0](https://github.com/azdanov/vscode-easy-coding-standard/compare/v1.2.0...v1.3.0) (2018-11-23)
 
 
