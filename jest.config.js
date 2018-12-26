@@ -4,7 +4,7 @@ module.exports = {
   },
   globals: {
     "ts-jest": {
-      tsConfigFile: "tsconfig.json"
+      tsConfig: "tsconfig.json"
     }
   },
   coverageThreshold: {
@@ -16,9 +16,10 @@ module.exports = {
     }
   },
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   setupTestFrameworkScriptFile: "jest-extended",
   verbose: true,
   roots: ["<rootDir>/src/"],
-  testEnvironment: "node"
+  testEnvironment: "node",
+  preset: "ts-jest",
+  testMatch: null
 };
