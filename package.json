@@ -39,7 +39,7 @@
     "test:coverage": "jest --coverage",
     "test:install": "run-s test:install-composer test:install-fixtures",
     "test:install-composer": "sh composer.sh",
-    "test:install-fixtures": "php composer.phar install -d ./src/main/__fixtures__",
+    "test:install-fixtures": "php composer.phar install -d ./src/main/__fixtures__ --ignore-platform-reqs",
     "test:integration": "run-s compile vscode:test",
     "vscode:install": "node ./node_modules/vscode/bin/install",
     "vscode:prepublish": "npm run build",
