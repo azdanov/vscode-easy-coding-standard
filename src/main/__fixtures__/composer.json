@@ -1,7 +1,7 @@
 {
   "name": "azdanov/testing",
   "require-dev": {
-    "symplify/easy-coding-standard": "^4.7"
+    "symplify/easy-coding-standard": "^5.2"
   },
   "require": {}
 }
